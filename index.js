@@ -235,13 +235,13 @@ module.exports = function(sails) {
         // and we want the explicit actions defined in the app)
         var actions = Object.keys(sails.controllers[controllerId]);
 
-
+        const controllerName = config.controllerName ? config.controllerName : controllerId;
 
         // Determine base route
-        var baseRoute = config.prefix + '/' + config.controllerName || controllerId;
+        var baseRoute = config.prefix + '/' + controllerName;
         // Determine base route for RESTful service
         // Note that restPrefix will always start with /
-        var baseRestRoute = config.prefix + config.restPrefix + '/' + config.controllerName || controllerId;
+        var baseRestRoute = config.prefix + config.restPrefix + '/' + controllerName;
 
         if (config.pluralize) {
           baseRoute = pluralize(baseRoute);
