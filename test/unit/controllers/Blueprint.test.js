@@ -9,6 +9,12 @@ describe('Sequelize Blueprint User', function(){
         .expect(200, done);
     });
 
+    it('Get users with config controller name', function(done){
+        request(sails.hooks.http.app)
+        .get('/restuser')
+        .expect(200, done);
+    });
+
     it('Create a user', function(done){
         request(sails.hooks.http.app)
         .post('/user')
