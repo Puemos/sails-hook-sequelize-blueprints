@@ -38,7 +38,7 @@ module.exports = {
     }
 
     if (_.isEmpty(aliasFilter)) {
-      return {};
+      return [];
     }
     // Convert the string representation of the filter list to an Array. We
     // need this to provide flexibility in the request param. This way both
@@ -51,11 +51,11 @@ module.exports = {
     }
 
     _.each(aliasFilter, function(association) {
-      var childModel = association.toLowerCase();
+      var associationLower = association.toLowerCase();
       // iterate through parent model associations
       _.each(sails.models[parentModel].associations, function(relation) {
-        // check if association match childModel name
-        if (relation.target.name === childModel) {
+        // check if association match associationLower name
+        if (relation.target.as === associationLower) {
           var obj = { model: relation.target, as: relation.options.as };
           if (relation.associationType === 'HasMany') {
             obj.limit = req._sails.config.blueprints.populateLimit || DEFAULT_POPULATE_LIMIT;

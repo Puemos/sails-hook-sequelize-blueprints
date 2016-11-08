@@ -14,7 +14,7 @@
     "sequelize",
     "blueprints"
   ],
-  "author": "Cesar Augusto D. Azevedo",
+  "author": "Shy Alter",
   "license": "MIT",
   "devDependencies": {
     "mocha": "^2.2.5",
@@ -46,10 +46,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:cesardeazevedo/sails-hook-sequelize-blueprints.git"
+    "url": "git@github.com:Puemos/sails-hook-sequelize-blueprints.git"
   },
   "bugs": {
-    "url": "https://github.com/cesardeazevedo/sails-hook-sequelize-blueprints/issues"
+    "url": "https://github.com/Puemos/sails-hook-sequelize-blueprints/issues"
   },
-  "homepage": "https://github.com/cesardeazevedo/sails-hook-sequelize-blueprints"
+  "homepage": "https://github.com/Puemos/sails-hook-sequelize-blueprints"
 }

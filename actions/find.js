@@ -28,7 +28,7 @@ var actionUtil = require('../actionUtil'),
  * @param {String} callback - default jsonp callback param (i.e. the name of the js function returned)
  */
 
-module.exports = function findRecords (req, res) {
+module.exports = function findRecords(req, res) {
   // Look up the model
   var Model = actionUtil.parseModel(req);
 
@@ -38,7 +38,7 @@ module.exports = function findRecords (req, res) {
     perPage = actionUtil.parsePerPage(req),
     populate = actionUtil.populateEach(req);
 
-  if(page && perPage){
+  if (page && perPage) {
     limit = perPage;
     offset = (page - 1) * (perPage + 1);
   }
@@ -47,30 +47,32 @@ module.exports = function findRecords (req, res) {
   // to grab the particular instance with its primary key === the value
   // of the `id` param.   (mainly here for compatibility for 0.9, where
   // there was no separate `findOne` action)
-  if ( actionUtil.parsePk(req) ) {
-    return require('./findOne')(req,res);
+  if (actionUtil.parsePk(req)) {
+    return require('./findOne')(req, res);
   }
   // Lookup for records that match the specified criteria
   Model.findAll({
-    where: actionUtil.parseCriteria(req),
-    limit: limit,
-    offset: offset,
-    order: actionUtil.parseSort(req),
-    include: populate
-  }).then(function(matchingRecords) {
-    // Only `.watch()` for new instances of the model if
-    // `autoWatch` is enabled.
-    if (req._sails.hooks.pubsub && req.isSocket) {
-      Model.subscribe(req, matchingRecords);
-      if (req.options.autoWatch) { Model.watch(req); }
-      // Also subscribe to instances of all associated models
-      _.each(matchingRecords, function (record) {
-        actionUtil.subscribeDeep(req, record);
-      });
-    }
+      where: actionUtil.parseCriteria(req),
+      limit: limit,
+      offset: offset,
+      order: actionUtil.parseSort(req),
+      include: req._sails.config.blueprints.populate ? populate : []
+    })
+    .then(function(matchingRecords) {
+      // Only `.watch()` for new instances of the model if
+      // `autoWatch` is enabled.
+      if (req._sails.hooks.pubsub && req.isSocket) {
+        Model.subscribe(req, matchingRecords);
+        if (req.options.autoWatch) { Model.watch(req); }
+        // Also subscribe to instances of all associated models
+        _.each(matchingRecords, function(record) {
+          actionUtil.subscribeDeep(req, record);
+        });
+      }
 
-    res.ok(matchingRecords);
-  }).catch(function(err){
-    return res.serverError(err);
-  });
+      res.ok(matchingRecords);
+    })
+    .catch(function(err) {
+      return res.serverError(err);
+    });
 };
