@@ -55,7 +55,7 @@ module.exports = {
       // iterate through parent model associations
       _.each(sails.models[parentModel].associations, function(relation) {
         // check if association match associationLower name
-        if (relation.target.as === associationLower) {
+        if (relation.options.as === associationLower) {
           var obj = { model: relation.target, as: relation.options.as };
           if (relation.associationType === 'HasMany') {
             obj.limit = req._sails.config.blueprints.populateLimit || DEFAULT_POPULATE_LIMIT;
