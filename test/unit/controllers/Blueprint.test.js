@@ -181,7 +181,7 @@ describe('Sequelize Blueprint User', function(){
 
     it('Populate pet', function(done){
         request(sails.hooks.http.app)
-        .get('/user/?populate=pet')
+        .get('/user/?populate=pets')
         .expect(200)
         .end(function(err, response){
           if(err)
@@ -194,7 +194,7 @@ describe('Sequelize Blueprint User', function(){
 
     it('Populate user from pet', function(done){
         request(sails.hooks.http.app)
-        .get('/pet?populate=user')
+        .get('/pet?populate=owner')
         .expect(200)
         .end(function(err, response){
           if(err)
@@ -207,7 +207,7 @@ describe('Sequelize Blueprint User', function(){
 
     it('Populate pet and image', function(done){
         request(sails.hooks.http.app)
-        .get('/user/?populate=[pet,image]')
+        .get('/user/?populate=[pets,images]')
         .expect(200)
         .end(function(err, response){
           if(err)
