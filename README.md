@@ -1,14 +1,19 @@
 # sails-hook-sequelize-blueprints
-Sails blueprints for sequelize ORM
 
-[![Build Status](https://travis-ci.org/Puemos/sails-hook-sequelize-blueprints.svg)](https://travis-ci.org/Puemos/sails-hook-sequelize-blueprints)
-[![npm version](https://badge.fury.io/js/sails-hook-sequelize-blueprints.svg)](http://badge.fury.io/js/sails-hook-sequelize-blueprints)
+a fork of [cesardeazevedo/sails-hook-sequelize-blueprints](https://github.com/cesardeazevedo/sails-hook-sequelize-blueprints) Sails blueprints for sequelize ORM
 
-The blueprints waterline replaced with sequelize.
+Diffs:
 
-#Install
+- populate by association name
+- find default (not populate all)
+- to populate all you will need to send `.../?populate=all`
+
+[![Build Status](https://travis-ci.org/Puemos/sails-hook-sequelize-blueprints.svg)](https://travis-ci.org/Puemos/sails-hook-sequelize-blueprints) [![npm version](https://badge.fury.io/js/sails-hook-sequelize-blueprints.svg)](http://badge.fury.io/js/sails-hook-sequelize-blueprints)
+
+# Install
 
 Install [sails-hook-sequelize](https://github.com/festo/sails-hook-sequelize) first:
+
 ```sh
 $ npm install sails-hook-sequelize --save
 ```
@@ -30,7 +35,8 @@ $ npm install --save continuation-local-storage
 # Configuration
 
 `.sailsrc`
-````
+
+``` `
 "hooks": {
   "blueprints": false,
   "orm": false,
@@ -59,7 +65,9 @@ module.exports.blueprints = {
 ```
 
 ## Connections
+
 Sequelize connection
+
 ```javascript
 somePostgresqlServer: {
   user: 'postgres',
@@ -76,8 +84,9 @@ somePostgresqlServer: {
 ```
 
 ## Models
-Sequelize model definition
-`models/user.js`
+
+Sequelize model definition `models/user.js`
+
 ```javascript
 module.exports = {
   attributes: {
@@ -115,12 +124,11 @@ module.exports = {
 };
 ```
 
-#Credits
-A big thanks to [festo/sailsjs-sequelize-example](https://github.com/festo/sailsjs-sequelize-example) and [Manuel Darveau's answer](https://groups.google.com/forum/#!msg/sailsjs/ALMxbKfnCIo/H2RcRUnnFGE) that turn this possible with thier sequelize implementations.
+# Credits
+### Sails blueprints for sequelize ORM
+ [cesardeazevedo/sails-hook-sequelize-blueprints](https://github.com/cesardeazevedo/sails-hook-sequelize-blueprints)
 
-[Munkacsy.me](http://munkacsy.me/use-sequelize-with-sails-js/)
-
-#Contributions
+# Contributions
 
 1. Fork it!
 2. Create your feature branch: git checkout -b my-new-feature
@@ -128,5 +136,6 @@ A big thanks to [festo/sailsjs-sequelize-example](https://github.com/festo/sails
 4. Push to the branch: git push origin my-new-feature
 5. Submit a pull request
 
-#License
+# License
+
 [MIT](./LICENSE)
