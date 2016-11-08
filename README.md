@@ -21,7 +21,7 @@ $ npm install sails-hook-sequelize --save
 Install this hook with:
 
 ```sh
-$ npm install sails-hook-sequelize-blueprints --save
+$ npm install sails-hook-sequelize-blueprints-puemos --save
 ```
 
 Sequelize dependencies:
