@@ -46,6 +46,7 @@ module.exports = function remove(req, res) {
     var through = Model.associations[relation].options.through.model;
     var ThroughModel = sails.models[through.toLowerCase()];
     var childRelation = Model.associations[relation].options.to;
+    var parentForeign = Model.associations[relation].options.foreignKey.name;
     var childForeign = ChildModel.associations[childRelation].options.foreignKey;
     var childAttr = childForeign.name || childForeign;
   }
@@ -61,6 +62,7 @@ module.exports = function remove(req, res) {
     if (isManyToManyThrough) {
       var throughRemove = { };
       throughRemove[childAttr] = childPk;
+      throughRemove[parentForeign] = parentPk;
       ThroughModel.destroy({ where: throughRemove }).then(function(){
         return returnParentModel();
       })
