@@ -1,6 +1,6 @@
 {
   "name": "sails-hook-sequelize-blueprints-puemos",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Sails blueprints with sequelize",
   "main": "index.js",
   "sails": {
